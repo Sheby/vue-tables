@@ -2,7 +2,7 @@
 
 ## This is a fork of [matfish2](https://github.com/matfish2/vue-tables) vue-tables
 
-All credit for original work goes to @matfish2. I've added additional functionality for my needs.
+All credit for original work goes to [matfish2](https://github.com/matfish2/vue-tables). I've added additional functionality for my needs.
 
 Check the bottom of the docs for new functionality and options.
 
@@ -235,7 +235,7 @@ You can now use vue partials as templates.
 
 Register the partial before main vue instance:
 
-     <script type="text/x-template" id="my-partial">
+    <script type="text/x-template" id="my-partial">
         <a href="some/link/{{ row.id }}" class="btn btn-xs">
             Edit
         </a>
@@ -253,7 +253,7 @@ And pass it to templates:
        }
     }
     
-'column' and 'row' are available in the partials scope.
+`column` and `row` are available in the partials scope.
 
 This allows for much cleaner code without using template literals. Allowing for older browser support.
 
@@ -261,7 +261,7 @@ This allows for much cleaner code without using template literals. Allowing for 
 
 ### Different css classes per columns
 
-Add in one or more css classes for your column 'td' elements separated with spaces:
+Add in one or more css classes for your column `td` elements separated with spaces:
 
     columnStyles:{
         edit: 'my-class other-class'
@@ -269,7 +269,7 @@ Add in one or more css classes for your column 'td' elements separated with spac
 
 ### Different css classes for headings
     
-This will default back to 'columnStyles' set for specific columns, if you want to override it do this:
+This will default back to `columnStyles` set for specific columns, if you want to override it do this:
 
     headingStyles:{
         edit: 'heading-class'
