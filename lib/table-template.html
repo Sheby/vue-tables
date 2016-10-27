@@ -87,8 +87,14 @@
 </tfoot>
 <tbody v-el:tbody>
  <tr v-for="row in data [[rowFilters]]" [[trackBy]] @click='rowWasClicked(row)'>
-   <td v-for="column in allColumns"
-   v-html="row[column] | render row column [[columnFilters]]"></td>
+   <td v-for="column in allColumns" :class="column | columnStyle">
+       <template v-if="isPartialTemplate(column)">
+           <partial :name="options.templates[column].name"></partial>
+       </template>
+       <template v-else>
+           {{{ row[column] | render row column [[columnFilters]] }}}
+       </template>
+   </td>
  </tr>
 
  <tr v-if="count==0"

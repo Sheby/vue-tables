@@ -1,5 +1,11 @@
 # Vue Tables
 
+## This is a fork of [matfish2](https://github.com/matfish2/vue-tables) vue-tables
+
+All credit for original work goes to @matfish2. I've added additional functionality for my needs.
+
+Check the bottom of the docs for new functionality and options.
+
 Note: using strings as templates is deprecated and will be removed in an upcoming release. Please use functions instead.
 
 [![npm version](https://badge.fury.io/js/vue-tables.svg)](https://badge.fury.io/js/vue-tables) [![Build Status](https://travis-ci.org/matfish2/vue-tables.svg?branch=master)](https://travis-ci.org/matfish2/vue-tables)
@@ -18,6 +24,7 @@ This Vue package offers an easy and intuitive way of displaying Bootstrap-styled
 - [Custom Filters](#custom-filters)
 - [List Filters](#list-filters)
 - [Options](#options)
+- [New Stuff](#new-stuff)
 
 # Dependencies
 
@@ -219,6 +226,54 @@ Options are set in three layers, where the more particular overrides the more ge
 3. Options for a single table, passed through the `options` prop.
 
 [EXPLORE OPTIONS](//jsfiddle.net/matfish2/bp1g4khr/embedded/result/)
+
+# New stuff
+
+## Partials as templates
+
+You can now use vue partials as templates.
+
+Register the partial before main vue instance:
+
+     <script type="text/x-template" id="my-partial">
+        <a href="some/link/{{ row.id }}" class="btn btn-xs">
+            Edit
+        </a>
+    </script>
+    <script>
+        Vue.partial('my-partial', '#my-partial');
+    </script>
+
+And pass it to templates:
+
+    templates: {
+      edit: {
+           type: 'partial',
+           name: 'my-partial'
+       }
+    }
+    
+'column' and 'row' are available in the partials scope.
+
+This allows for much cleaner code without using template literals. Allowing for older browser support.
+
+## Options
+
+### Different css classes per columns
+
+Add in one or more css classes for your column 'td' elements separated with spaces:
+
+    columnStyles:{
+        edit: 'my-class other-class'
+    }
+
+### Different css classes for headings
+    
+This will default back to 'columnStyles' set for specific columns, if you want to override it do this:
+
+    headingStyles:{
+        edit: 'heading-class'
+    }
 
 -----------------
 CSS Note: to center the pagination apply `text-align:center` to the wrapping element
