@@ -86,7 +86,8 @@
  </tr>
 </tfoot>
 <tbody v-el:tbody>
- <tr v-for="row in data [[rowFilters]]" [[trackBy]] @click='rowWasClicked(row)'>
+<template v-for="row in data [[rowFilters]]" [[trackBy]] v-if="isPartialTemplate(column)">
+ <tr @click='rowWasClicked(row)'>
    <td v-for="column in allColumns" :class="column | columnStyle">
        <template v-if="isPartialTemplate(column)">
            <partial :name="options.templates[column].name"></partial>
@@ -97,13 +98,17 @@
    </td>
  </tr>
 
+ <tr v-partial :name="options.appends"></tr>
+
+</template>
  <tr v-if="count==0"
- class="VueTables__no-results">
- <td class="text-center"
- colspan="{{allColumns.length}}">
- {{display([[loading]]'noResults')}}
-</td>
-</tr>
+     class="VueTables__no-results">
+     <td class="text-center"
+         colspan="{{allColumns.length}}">
+         {{display([[loading]]'noResults')}}
+     </td>
+ </tr>
+
 </tbody>
 </table>
 </div>
