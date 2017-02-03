@@ -26,7 +26,8 @@
   },
   "browserify": {
     "transform": [
-      "stringify"
+      "stringify",
+      "babelify"
     ]
   },
   "licenses": "MIT",
