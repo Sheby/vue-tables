@@ -93,7 +93,9 @@
            <partial :name="options.templates[column].name"></partial>
        </template>
        <template v-else>
-           {{{ row[column] | render row column [[columnFilters]] }}}
+           <template v-if="(column in row) && (typeof row == 'object)">
+               {{{ row[column] | render row column [[columnFilters]] }}}
+           </template>
        </template>
    </td>
  </tr>
