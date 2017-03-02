@@ -34,7 +34,7 @@
 </div>
 
 <div class="VueTables__table-wrapper" v-bind:class="options.wrapperClasses">
-  <table class="VueTables__table table" v-bind:class="options.skin">
+  <table class="VueTables__table table" v-bind:class="options.skin" v-el:table>
     <thead>
       <tr v-el:headings>
        <th @click="orderByColumn(column)"
@@ -85,22 +85,21 @@
    v-bind:class="sortableChevronClass(column)"></span></th>
  </tr>
 </tfoot>
-<tbody v-el:tbody>
-<template v-for="row in data [[rowFilters]]" [[trackBy]] v-if="isPartialTemplate(column)">
+<tbody v-for="row in data [[rowFilters]]" [[trackBy]]>
  <tr @click='rowWasClicked(row)'>
    <td v-for="column in allColumns" :class="column | columnStyle">
        <template v-if="isPartialTemplate(column)">
            <partial :name="options.templates[column].name"></partial>
        </template>
        <template v-else>
-           {{ typeof row }}
+           {{{ row[column] | render row column [[columnFilters]] }}}
        </template>
    </td>
  </tr>
 
  <tr v-partial :name="options.appends"></tr>
-
-</template>
+</tbody>
+<tbody>
  <tr v-if="count==0"
      class="VueTables__no-results">
      <td class="text-center"
@@ -108,7 +107,6 @@
          {{display([[loading]]'noResults')}}
      </td>
  </tr>
-
 </tbody>
 </table>
 </div>
@@ -128,4 +126,3 @@ v-if="options.pagination && !options.pagination.dropdown"
 </div>
 
 </div>
-
