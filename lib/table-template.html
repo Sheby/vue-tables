@@ -92,9 +92,7 @@
        <template v-if="isPartialTemplate(column)">
            <partial :name="options.templates[column].name"></partial>
        </template>
-       <template v-else>
-           {{{ row[column] | render row column [[columnFilters]] }}}
-       </template>
+       <template v-else v-html="row[column] | render row column [[columnFilters]]"></template>
    </td>
  </tr>
 
